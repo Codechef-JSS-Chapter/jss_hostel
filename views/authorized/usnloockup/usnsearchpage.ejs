@@ -1,0 +1,36 @@
+<%-include('../../tamplate');-%>
+<style type="text/css">
+	span{
+		display: none;
+	}
+	#sidebar h2{
+		display: none;
+	}
+	.bigBox{
+		width: calc(100vw - 30px);
+		height: calc(100vh - 100px);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	label{
+		font-size: 30px;
+	}
+	input{
+		font-size: 30px;
+	}
+	button{
+		font-size: 30px;
+		margin-left: 30px;
+	}
+</style>
+<div class="bigBox">
+	<form action="\showusn" method="post">
+		<label>Enter USN: &nbsp</label>
+		<input type="text" name="usn" required>
+		<button type="submit">Search</button>
+	</form>
+
+</div>
+
+<%-include('../../tamplate2');-%>

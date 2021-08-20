@@ -1,0 +1,85 @@
+<%-include('../../tamplate');-%>
+<style type="text/css">
+	form{
+		margin-left: 300px;
+		margin-top: 20px;
+	}
+	@media(max-width: 1000px){
+	form{
+		margin-left:20px;
+		margin-right: 20px;
+	}
+	}
+	@media(orientation: portrait){
+		h3{
+			margin-bottom: 0px;
+		}
+		input{
+			display: block;
+			width: 100%;
+			font-size: 25px;
+			box-sizing: border-box;
+		}
+		label{
+			font-size: 25px;
+		}
+		.urls{
+			width: calc(100% - 45px);
+			display: inline;
+			margin-bottom: 20px;
+		}
+		input[name='fb']{
+			margin-top: 40px;
+		}
+		button{
+			width: 100%;
+			background-color: black;
+			color: white;
+			font-size: 25px;
+			padding: 10px 0;
+			margin-top: 10px;
+		}
+	}
+</style>
+<form action="/confirmalumni" method="POST">
+	<input placeholder="Name" required type="text" name="name">
+	<br>
+	<input type="text" placeholder="Mobile no.(whatsapp)" name="phone">
+
+	<h3>Enter your interests separated by comma(,):</h3>
+	<input type="text" placeholder="Guitar, Anime etc." name="interests"><!-- singing,dancing,rubickscube,gaming -->
+	<br>
+	<h3>Enter your skills separated by comma(,):</h3>
+	<input type="text" placeholder="Video editing, content creation etc." name="skills"><!-- Photography, video editing, coding-->
+	<br>
+	<h3>Tech stack separated by comma(,):</h3>
+	<input type="text" placeholder="C++, Python, MERN, CSS etc." name="tech"><!-- C++,Java,HTML,CSS,MERN,LAMP-->
+
+	<br>
+	<label for="fb"><i class="fab fa-facebook"></i></label>
+	<input type="text" placeholder="profile URL." class="urls" name="fb"><!--fb -->
+	<br>
+	<label for="insta"><i class="fab fa-instagram"></i></label>
+	<input type="text" placeholder="instagram username." class="urls" name="insta"><!--insta -->
+	<br>
+	<label for="twitter"><i class="fab fa-twitter"></i></label>
+	<input type="text" placeholder="twitter handle" class="urls" name="twitter"><!--twitter -->
+	<br>
+	<label for="linkedin"><i class="fab fa-linkedin"></i></label>
+	<input type="text" placeholder="linkedin username." class="urls" name="linkedin"><!--linkedin -->
+	<br>
+	<label for="github"><i class="fab fa-github"></i></label>
+	<input type="text" placeholder="github username." class="urls" name="github"><!--github-->
+	<br>
+	<label for="website"><i class="fas fa-link"></i></label>
+	<input type="text" placeholder="website URL." class="urls" name="website"><!-- website-->
+
+	<h3>You stayed in rooms,separated by comma(,):</h3>
+	<input type="text" placeholder="TF33,FF17 etc" name="rooms"><!--TF33,FF17,SF27-->
+
+	<h3>Create password to edit in future:</h3>
+	<input type="text" required name="password">
+
+	<button type="submit">Save</button>
+</form>
+<%-include('../../tamplate2');-%>

@@ -1,0 +1,59 @@
+.title{
+	font-size: 50px;
+	margin-bottom: 0px;
+	margin-top: 20px;
+}
+.subtitle{
+	font-size: 30px;
+	margin-top: 0px;
+}
+span{
+	display: none;
+}
+.bigBox{
+	margin-left: 300px;
+}
+label{
+	width: 80px;
+	display: inline-block;
+}
+.error{
+	border:2px solid black;
+	display: inline-block;
+	margin: 10px 0;
+	background-color: black;
+	color: white;
+}
+#preloader{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: white;
+	background-image: url(../asset/preloder.gif);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 40%;
+	z-index: 2;
+	display: none;
+}
+
+/*---------------------------------------------------------------responsive--------------*/
+/*---------------------------------------------------------------responsive-------------*/
+
+/*---------------------------------------------------------------responsive-----------*/
+
+/*---------------------------------------------------------------responsive----------*/
+@media(max-width: 1000px){
+	.bigBox{
+		margin-left:20px;
+	}
+	.finalBtn{
+		transform: scale(1.5);
+		margin-left: 20px;
+	}
+	#preloader{
+		background-size: 100%;
+	}
+}

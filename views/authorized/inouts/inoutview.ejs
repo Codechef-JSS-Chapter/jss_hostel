@@ -1,0 +1,123 @@
+<%-include('../../tamplate');-%>
+<style type="text/css">
+	body{
+		user-select: auto;
+	}
+	span{
+		display: none;
+	}
+	#sidebar h2{
+		display: none;
+	}
+	.bigBox{
+		display: grid;
+		grid-template-columns: 30% 70%;
+	}
+	.left{
+		text-align: right;
+	}
+	.right{
+		padding-left: 50px;
+	}
+	.date{
+		font-size: 25px;
+		margin-bottom: 0;
+	}
+	.time{
+		margin:0;
+		color: red;
+	}
+	.day{
+		margin:0;
+	}
+	.status{
+		color: blue;
+		display: inline;
+	}
+	h4{
+		display: inline;
+	}
+	.usn{
+		margin-top: 25px;
+		display: inline-block;
+		margin-bottom: 0px;
+	}
+	.destination{
+		width: 60%;
+		display: inline;
+		overflow-wrap: break-word; 
+	}
+	#searchBar{
+		position: fixed;
+		bottom: 50px;
+		right: 50px;
+	}
+</style>
+<div id="searchBar">
+	<input id="searchString" type="text">
+	<button onclick="searchPage();"><i class="fas fa-search"></i></button>
+</div>
+<div class="bigBox">
+	<%data.forEach((ele)=>{%>
+	<div class="left">
+		<h3 class="date"><%=ele.date%></h3>
+		<h3 class="time"><%=ele.time%></h3>
+		<h3 class="day"><%=ele.day%></h3>
+	</div>
+	<div class="right">
+		<h4>USN:</h4>
+		<h3 class="usn"><%=ele.usn%></h3>
+		<br>
+		<h4>Status:</h4>
+		<h3 class="status"><%=ele.status%></h3>
+		<br>
+		<h4>Place:</h4>
+		<h3 class="destination"><%=ele.destination%></h3>
+	</div>
+	
+<%})%>
+</div>
+<script type="text/javascript">
+	function searchPage(){
+		var TRange=null;
+		let searchString=document.querySelector("#searchString").value;
+		findString(searchString);
+
+function findString (str) {
+ if (parseInt(navigator.appVersion)<4) return;
+ var strFound;
+ if (window.find) {
+
+  // CODE FOR BROWSERS THAT SUPPORT window.find
+
+  strFound=self.find(str);
+  if (!strFound) {
+   strFound=self.find(str,0,1);
+   while (self.find(str,0,1)) continue;
+  }
+ }
+ else if (navigator.appName.indexOf("Microsoft")!=-1) {
+
+  // EXPLORER-SPECIFIC CODE
+
+  if (TRange!=null) {
+   TRange.collapse(false);
+   strFound=TRange.findText(str);
+   if (strFound) TRange.select();
+  }
+  if (TRange==null || strFound==0) {
+   TRange=self.document.body.createTextRange();
+   strFound=TRange.findText(str);
+   if (strFound) TRange.select();
+  }
+ }
+ else if (navigator.appName=="Opera") {
+  alert ("Opera browsers not supported, sorry...")
+  return;
+ }
+ if (!strFound) alert ("String '"+str+"' not found!")
+ return;
+}
+	}
+</script>
+<%-include('../../tamplate2');-%>

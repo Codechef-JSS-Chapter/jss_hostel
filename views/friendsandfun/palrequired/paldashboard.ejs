@@ -1,0 +1,96 @@
+<%-include('../../tamplate');-%>
+<style type="text/css">
+	#createBtn{
+		z-index: 20;
+		position: fixed;
+		right: 60px;
+		bottom: 50px;
+		background-color: black;
+		padding:0 20px;
+		border-radius: 50px;
+		color: white;
+		cursor: pointer;
+	}
+	.fa-paper-plane{
+		font-size: 20px;
+	}
+	#createBtn:hover{
+		transform: scale(1.1);
+	}
+	.bigBox{
+		margin-left: 270px;
+		display: grid;
+		grid-template-columns: repeat(3,30%);
+		grid-gap: 3%;
+	}
+	.cards{
+		padding: 0 20px;
+		margin-top: 20px;
+		position: relative; 
+		border-radius: 40px;
+		background: #E0E5EC;
+		box-shadow:  -10px 10px 20px #a6a9af, 10px -10px 20px #ffffff;
+	}
+	.requiredfor{
+		color: red;
+	}
+	.numberofpeople{
+		color: blue;
+	}
+	.fa-chevron-down{
+		float: right;
+		font-size: 50px;
+		position: absolute;
+		right: 30px;
+		bottom: 15px;
+		background: -webkit-linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+		-webkit-background-clip:text;
+		-webkit-text-fill-color:transparent;
+		cursor: pointer;
+	}
+	.body{
+		height: 0;
+		overflow: hidden;
+		transition: all 1s;
+	}
+/*---------------------------------------------------------------responsive----------*/
+
+
+@media(max-width: 1000px){
+	.bigBox{
+		margin:0px 20px;
+	}
+}
+@media(orientation: portrait){
+	.bigBox{
+		grid-template-columns: repeat(1,100%);
+		grid-gap: 10px;
+	}
+	#createBtn{
+		right: 20px;
+		bottom: 30px;
+	}
+}
+</style>
+<div id="createBtn" onclick="location.href='/palcreate'">
+	<p>Create new&nbsp&nbsp<i class="fas fa-marker"></i></p>
+</div>
+<div class="bigBox">
+	<%data.forEach(ele=>{%>
+	<div class="cards">
+		<h3>From:&nbsp<span><%=ele.name%></span></h3>
+		<h3>Required for:&nbsp<span class="requiredfor"><%=ele.requiredfor%></span></h3>
+		<h3>Number of people:&nbsp<span class="numberofpeople"><%=ele.numberofpeople%></span></h3>
+		<h3>Date:&nbsp<span><%=ele.date%></span></h3>
+		<h3 class="body a<%=ele.id%>"><span>Whatsapp:&nbsp<%=ele.number%><br></span><%=ele.message%></h3>
+		<i onclick="makebig('a<%=ele.id%>',this);" class="fas fa-chevron-down"></i>
+	</div>
+    <%})%>
+</div>
+<script type="text/javascript">
+		function makebig(classname,x){
+		document.querySelector(`.${classname}`).clientHeight==0?document.querySelector(`.${classname}`).style.height='auto':document.querySelector(`.${classname}`).style.height=0;
+		x.classList.toggle("fa-chevron-up");
+	}
+</script>
+<%-include('../../tamplate2');-%>	

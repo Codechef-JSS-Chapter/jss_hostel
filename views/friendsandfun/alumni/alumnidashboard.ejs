@@ -1,0 +1,349 @@
+<%-include('../../tamplate');-%>
+<style type="text/css">
+	body{
+		user-select: auto;
+	}
+	#createBtn{
+		position: fixed;
+		right: 60px;
+		bottom: 50px;
+		background-color: black;
+		padding:0 20px;
+		border-radius: 50px;
+		color: white;
+		cursor: pointer;
+		z-index: 10;
+	}
+	.fa-paper-plane{
+		font-size: 20px;
+	}
+	#createBtn:hover{
+		transform: scale(1.1);
+	}
+	#searchBar{
+		position: fixed;
+		bottom: 130px;
+		right: 50px;
+		z-index: 99;
+	}
+	.bigBox{
+		margin-left: 300px;
+		margin-right: 50px;
+	}
+	::-moz-selection { /* Code for Firefox */
+	  color: black;
+	  background: yellow;
+	}
+
+	::selection {
+	  color: black;
+	  background: yellow;
+	}
+	:root {
+  --level-one: translateZ(3rem);
+  --level-two: translateZ(6rem);
+  --level-three: translateZ(9rem);
+  
+  --fw-normal: 400;
+  --fw-bold: 700;
+  
+  --clr: #b7c9e5;
+}
+
+.cards {
+  width: 400px;
+  margin: 20px auto;
+  cursor: pointer;
+}
+.card__content {
+  text-align: center;
+  position: relative;
+  padding: 7em 5em;
+  transition: transform 1.5s;
+  transform-style: preserve-3d;
+}
+
+.cards:hover .card__content {
+  transform: rotateY(.5turn);
+}
+
+.card__front,
+.card__back {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5em 3em;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  display: grid;
+  align-content: center;
+}
+
+.card__front {
+  background-color: white;
+  color: black;
+}
+
+.card__front::before {
+  content: '';
+  position: absolute;
+  --spacer: 1em;
+  top: var(--spacer);
+  bottom: var(--spacer);
+  left: var(--spacer);
+  right: var(--spacer);
+  border: 3px solid currentColor;
+  transform: var(--level-one);
+}
+
+.card__title {
+  font-size: 30px;
+  transform: var(--level-three);
+  text-transform: uppercase;
+}
+
+.card__subtitle {
+  transform: var(--level-two);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: .75rem;
+  font-weight: var(--fw-bold);
+  opacity: .7;
+}
+
+.card__body {
+  transform: var(--level-two);
+  font-weight: var(fw-normal);
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+
+.card__back {
+  transform: rotateY(.5turn);
+  color: white;
+  background: #333;
+}
+.techstack{
+	background-color: black;
+	color: white;
+	padding: 1px 5px;
+}
+.card__back a{
+	color: white;
+	margin-right: 10px;
+	margin-top: 20px;
+}
+.fa-edit{
+	position: absolute;
+	top: -30px;
+	right: -20px;
+}
+.blurscreen{
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	-webkit-backdrop-filter:blur(10px);
+	backdrop-filter:blur(10px);
+}
+.blurscreen>div{
+	border-radius: 40px;
+	background: #E0E5EC;
+	box-shadow:  -10px 10px 20px #a6a9af, 10px -10px 20px #ffffff;
+	width: 30vw;
+	height: 40vh;
+	margin:15% auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+/*---------------------------------------------------------------responsive----------*/
+
+
+@media(max-width: 1000px){
+	.bigBox{
+		margin-left:20px;
+		margin-right: 20px;
+	}
+}
+@media(orientation: portrait){
+	#createBtn{
+		right: 20px;
+		bottom: 30px;
+	}
+	.heading{
+		font-size: 16px;
+		font-weight: 100;
+	}
+	.cards{
+		width: 100%;
+	}
+	#searchBar{
+		bottom: 20px;
+		right: 20px;
+	}
+	#createBtn{
+		bottom: 60px;
+	}
+	.blurscreen>div{
+		width: 70vw;
+		height: 30vh;
+		margin:70% auto;
+		text-align: center;
+	}
+	.blurscreen>div form{
+		display: block;
+		width: 100%;
+	}
+	.blurscreen>div input{
+		display: block;
+    	width: 80%;
+    	box-sizing: border-box;
+    	margin: 0 auto;
+	}
+	.blurscreen>div button{
+		width: 80%;
+		background-color: black;
+		color: white;
+		font-size: 18px;
+	}
+	.brs{
+		display: none;
+	}
+}
+</style>
+<div class="blurscreen">
+	<div>
+		<form action="\editcard" method="post">
+			<h3>Enter Your Password:</h3>
+			<input type="hidden" name="id">
+			<input type="text" name="password">
+			<button type="send">Edit Card</button>
+		</form>
+		<br class="brs">
+		<br>
+		<button onclick="closepassword();">Cancel</button>
+	</div>
+</div>
+<div id="searchBar">
+	<input id="searchString" placeholder="search intrest, skills etc" type="text">
+	<button onclick="searchPage();"><i class="fas fa-search"></i></button>
+</div>
+<div id="createBtn" onclick="location.href='/alumnicreate'">
+	<p>Create new&nbsp&nbsp<i class="fas fa-marker"></i></p>
+</div>
+<div class="bigBox">
+	<h2 class="heading">Tap on a business card to get contact information, or create your own card which will serve as a time capsule for your friends, colleagues or juniors.</h2>
+	<%data.forEach(ele=>{%>
+	<div class="cards">
+  		<div class="card__content">
+    
+    		<div class="card__front">
+    			<h3 class="card__title"><%=ele.name%></h3>
+      			<p class="card__subtitle">
+      				<%=ele.interests%>
+      				<br>
+					<%=ele.skills%>
+					<br>
+					<span class="techstack">
+						<%=ele.tech%>
+					</span>
+				</p>
+    		</div> 
+    
+    		<div class="card__back">
+    			<p class="card__body">
+    				<i onclick="getpassword(`<%=ele.id%>`);" class="fas fa-edit"></i>
+    				<i class="fas fa-mobile-alt"></i>&nbsp<%=ele.number%><br>
+					<%=ele.rooms%><br>
+					<%if(ele.fb!=""){%>
+						<a href="<%=ele.fb%>" target="_blank"><i class="fab fa-facebook"></i></a>
+					<%}%>
+					<%if(ele.insta!=""){%>
+						<a href="https://www.instagram.com/<%=ele.insta%>" target="_blank"><i class="fab fa-instagram"></i></a>
+					<%}%>
+					<%if(ele.twitter!=""){%>
+						<a href="https://www.twitter.com/<%=ele.twitter%>" target="_blank"><i class="fab fa-twitter"></i></a>
+					<%}%>
+					<%if(ele.linkedin!=""){%>
+						<a href="https://www.linkedin.com/in/<%=ele.linkedin%>" target="_blank"><i class="fab fa-linkedin"></i></a>
+					<%}%>
+					<%if(ele.github!=""){%>
+						<a href="https://github.com/<%=ele.github%>" target="_blank"><i class="fab fa-github"></i></a>
+					<%}%>
+					<%if(ele.website!=""){%>
+						<a href="<%=ele.website%>" target="_blank"><i class="fas fa-link"></i></a>
+					<%}%>
+    			</p>
+    		</div>
+    
+  		</div>
+	</div>
+<%})%>
+	
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$('.blurscreen').hide()
+	function getpassword(pass){
+		$('.blurscreen').slideDown();
+		document.querySelector(`input[name='id']`).value=pass;
+		console.log(document.querySelector(`input[name='id']`).value);
+	}
+
+	function closepassword(){
+		$('.blurscreen').slideUp();
+	}
+
+
+
+
+	function searchPage(){
+		var TRange=null;
+		let searchString=document.querySelector("#searchString").value;
+		findString(searchString);
+
+function findString (str) {
+ if (parseInt(navigator.appVersion)<4) return;
+ var strFound;
+ if (window.find) {
+
+  // CODE FOR BROWSERS THAT SUPPORT window.find
+
+  strFound=self.find(str);
+  if (!strFound) {
+   strFound=self.find(str,0,1);
+   while (self.find(str,0,1)) continue;
+  }
+ }
+ else if (navigator.appName.indexOf("Microsoft")!=-1) {
+
+  // EXPLORER-SPECIFIC CODE
+
+  if (TRange!=null) {
+   TRange.collapse(false);
+   strFound=TRange.findText(str);
+   if (strFound) TRange.select();
+  }
+  if (TRange==null || strFound==0) {
+   TRange=self.document.body.createTextRange();
+   strFound=TRange.findText(str);
+   if (strFound) TRange.select();
+  }
+ }
+ else if (navigator.appName=="Opera") {
+  alert ("Opera browsers not supported, sorry...")
+  return;
+ }
+ if (!strFound) alert ("String '"+str+"' not found!")
+ return;
+}
+	}
+</script>
+<%-include('../../tamplate2');-%>	

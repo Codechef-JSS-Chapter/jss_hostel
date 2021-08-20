@@ -1,0 +1,152 @@
+<%-include('../../tamplate');-%>
+<style type="text/css">
+	body{
+		user-select: auto;
+	}
+	span{
+		display: none;
+	}
+	#sidebar h2{
+		display: none;
+	}
+	.bigBox{
+		display: grid;
+		grid-template-columns: 30% 60% 10%;
+	}
+	.left{
+		text-align: right;
+	}
+	.right{
+		padding-left: 50px;
+	}
+	.date{
+		font-size: 25px;
+		margin-bottom: 0;
+	}
+	.time{
+		margin:0;
+		color: red;
+	}
+	.day{
+		margin:0;
+	}
+	.status{
+		color: blue;
+		display: inline;
+	}
+	h4{
+		display: inline;
+	}
+	.usn{
+		margin-top: 25px;
+		display: inline-block;
+		margin-bottom: 0px;
+	}
+	.destination{
+		width: 60%;
+		display: inline;
+		overflow-wrap: break-word; 
+	}
+	#searchBar{
+		position: fixed;
+		bottom: 50px;
+		right: 50px;
+	}
+	.fa-trash-alt{
+		font-size: 30px;
+		color: red;
+		margin-top: 30px;
+		cursor: pointer;
+	}
+</style>
+<div id="searchBar">
+	<input id="searchString" type="text">
+	<button onclick="searchPage();"><i class="fas fa-search"></i></button>
+</div>
+<div class="bigBox">
+	<%data.forEach((ele)=>{%>
+	<div class="left a<%=ele.id%>">
+		<h3 class="date"><%=ele.date%></h3>
+		<h3 class="time"><%=ele.time%></h3>
+		<h3 class="day"><%=ele.day%></h3>
+	</div>
+	<div class="right a<%=ele.id%>">
+		<h4>USN:</h4>
+		<h3 class="usn"><%=ele.usn%></h3>
+		<br>
+		<h4>Department:</h4>
+		<h3 class="status"><%=ele.department%></h3>
+		<br>
+		<h4>Description:</h4>
+		<h3 class="destination"><%=ele.description%></h3>
+	</div>
+	<div>
+		<i onclick="deletecomplaint('a<%=ele.id%>','<%=ele.department%>','<%=ele.usn%>');" class="fas fa-trash-alt <%=ele.id%>"></i>
+	</div>
+	
+<%})%>
+</div>
+<script type="text/javascript">
+	function deletecomplaint(complaintid,complaintdepartment,complaintusn){
+		let divs=document.querySelectorAll(`.${complaintid}`);
+		console.log(divs);
+		divs.forEach((ele)=>{
+			ele.setAttribute('style',"background-color:#FF7F7F;")
+		})
+		 	s1=complaintid;
+		 	s2=complaintid.substring(1);
+			data={s2,complaintdepartment,complaintusn}
+			const options={
+				method:'POST',
+				headers:{'Content-Type':'application/json'},
+				body:JSON.stringify(data)
+			}
+		fetch('/deletecomplaint',options);
+	}
+
+
+
+
+	function searchPage(){
+		var TRange=null;
+		let searchString=document.querySelector("#searchString").value;
+		findString(searchString);
+
+function findString (str) {
+ if (parseInt(navigator.appVersion)<4) return;
+ var strFound;
+ if (window.find) {
+
+  // CODE FOR BROWSERS THAT SUPPORT window.find
+
+  strFound=self.find(str);
+  if (!strFound) {
+   strFound=self.find(str,0,1);
+   while (self.find(str,0,1)) continue;
+  }
+ }
+ else if (navigator.appName.indexOf("Microsoft")!=-1) {
+
+  // EXPLORER-SPECIFIC CODE
+
+  if (TRange!=null) {
+   TRange.collapse(false);
+   strFound=TRange.findText(str);
+   if (strFound) TRange.select();
+  }
+  if (TRange==null || strFound==0) {
+   TRange=self.document.body.createTextRange();
+   strFound=TRange.findText(str);
+   if (strFound) TRange.select();
+  }
+ }
+ else if (navigator.appName=="Opera") {
+  alert ("Opera browsers not supported, sorry...")
+  return;
+ }
+ if (!strFound) alert ("String '"+str+"' not found!")
+ return;
+}
+	}
+</script>
+<%-include('../../tamplate2');-%>

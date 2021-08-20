@@ -1,0 +1,120 @@
+<%-include('../../tamplate');-%>
+<style type="text/css">
+	body{
+		user-select: auto;
+	}
+	span{
+		display: none;
+	}
+	#sidebar h2{
+		display: none;
+	}
+	#searchBar{
+		position: fixed;
+		bottom: 50px;
+		right: 50px;
+		z-index: 99;
+	}
+	.cards{
+		position: relative;
+		width: 80%;
+		margin: 20px auto;
+		padding:10px 0; 
+		border-radius: 40px;
+		background: #E0E5EC;
+		box-shadow:  -10px 10px 20px #a6a9af, 10px -10px 20px #ffffff;
+	}
+	h3 span{
+		display: inline-block;
+		color: black;
+	}
+	h3{
+		margin-left: 50px;
+	}
+	.subject{
+		font-size: 20px;
+	}
+	.to{
+		color: blue;
+	}
+	.fa-chevron-down{
+		float: right;
+		font-size: 50px;
+		position: absolute;
+		right: 50px;
+		bottom: 15px;
+		background: -webkit-linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+		-webkit-background-clip:text;
+		-webkit-text-fill-color:transparent;
+		cursor: pointer;
+	}
+	.body{
+		height: 0;
+		overflow: hidden;
+		transition: all 1s;
+	}
+</style>
+<div id="searchBar">
+	<input id="searchString" type="text">
+	<button onclick="searchPage();"><i class="fas fa-search"></i></button>
+</div>
+<div class="bigBox">
+	<%data.forEach((ele)=>{%>
+	<div class="cards">
+		<h3 class="subject"><span>Subject:</span>&nbsp <%=ele.subject%></h3>
+		<h3 class="to"><span>To:</span>&nbsp <%=ele.to%></h3>
+		<h3 class="date"><span>Date:</span>&nbsp <%=ele.date%></h3>
+		<h3 class="body a<%=ele.id%>">Usn:<%=ele.usn%><br><br><%=ele.body%></h3>
+		<i onclick="makebig('a<%=ele.id%>',this);" class="fas fa-chevron-down"></i>
+	</div>
+<%})%>
+</div>
+<script type="text/javascript">
+	function makebig(classname,x){
+		document.querySelector(`.${classname}`).clientHeight==0?document.querySelector(`.${classname}`).style.height='auto':document.querySelector(`.${classname}`).style.height=0;
+		x.classList.toggle("fa-chevron-up");
+	}
+
+	function searchPage(){
+		var TRange=null;
+		let searchString=document.querySelector("#searchString").value;
+		findString(searchString);
+
+function findString (str) {
+ if (parseInt(navigator.appVersion)<4) return;
+ var strFound;
+ if (window.find) {
+
+  // CODE FOR BROWSERS THAT SUPPORT window.find
+
+  strFound=self.find(str);
+  if (!strFound) {
+   strFound=self.find(str,0,1);
+   while (self.find(str,0,1)) continue;
+  }
+ }
+ else if (navigator.appName.indexOf("Microsoft")!=-1) {
+
+  // EXPLORER-SPECIFIC CODE
+
+  if (TRange!=null) {
+   TRange.collapse(false);
+   strFound=TRange.findText(str);
+   if (strFound) TRange.select();
+  }
+  if (TRange==null || strFound==0) {
+   TRange=self.document.body.createTextRange();
+   strFound=TRange.findText(str);
+   if (strFound) TRange.select();
+  }
+ }
+ else if (navigator.appName=="Opera") {
+  alert ("Opera browsers not supported, sorry...")
+  return;
+ }
+ if (!strFound) alert ("String '"+str+"' not found!")
+ return;
+}
+	}
+</script>
+<%-include('../../tamplate2');-%>

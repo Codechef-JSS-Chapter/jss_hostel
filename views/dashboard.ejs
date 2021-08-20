@@ -1,0 +1,54 @@
+<%-include('tamplate');-%>
+
+
+	<div id="panelSelect">
+		<div id="panelSelectBtn">
+			<div>
+				<h3>Basic</h3>	
+			</div>
+			<div>
+				<h3>Friends and Fun</h3>	
+			</div>
+		</div>
+		<div id="basic">
+			<div class="card" id="inout" onclick="location.href='/inout'">
+				<p>In Out<br>Register</p>
+				<i class="fas fa-door-open"></i>
+			</div>
+			<div class="card" id="complaints" onclick="location.href='/complaint'">
+				<p>Complaint<br>Register</p>
+				<i class="fas fa-tools"></i>
+			</div>
+			<div class="card" id="application" onclick="location.href='/application'">
+				<p>Write<br>Application</p>
+				<i class="fas fa-envelope-open-text"></i>
+			</div>
+			<div class="card" id="notice" onclick="location.href='/notice'">
+				<p>Notice<br>Board</p>
+				<i class="fas fa-clipboard-list"></i>
+			</div>
+			<div class="card" id="mess">
+				<p>Mess<br>Time Table</p>
+				<i class="fas fa-utensils"></i>
+			</div>
+			<div class="card" id="roomstatus">
+				<p>Room<br>Status</p>
+				<i class="fas fa-bed"></i>
+			</div>
+		</div>
+		<div id="friendsAndFun">
+			<div class="card2" id="palrequired" onclick="location.href='/palrequired'">
+				<p>Pal Required</p>
+				<i class="fas fa-users"></i>
+			</div>
+			<div class="card2 gold" id="alumni" onclick="location.href='/alumni'">
+				<p>Alumni card</p>
+				<i class="fas fa-address-card"></i>
+			</div>
+			<div class="card2" id="buysell" onclick="location.href='/buysell'">
+				<p>Buy, Sell, Request</p>
+				<i class="fas fa-handshake"></i>
+			</div>
+		</div>
+	</div>
+<%-include('tamplate2');-%>	

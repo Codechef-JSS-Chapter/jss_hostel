@@ -1,0 +1,79 @@
+<%-include('../tamplate');-%>
+<style type="text/css">
+	.bigBox{
+		margin-left: 350px;
+	}
+	.illustration{
+		height: 70vh;
+		width: 50%;
+		background-image: url(asset/destination.png);
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		position: absolute;
+		right: 10px;
+		top: 150px;
+	}
+	.title{
+		font-size: 35px;
+		margin-bottom: 0px;
+	}
+	.subtitle{
+		font-size: 25px;
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+	input[name='destination']{
+		font-size: 25px;
+		margin-top: 50px;
+		margin-bottom: 50px;
+		box-sizing: border-box;
+	}
+	button{
+		font-size: 25px;
+	}
+/*---------------------------------------------------------------responsive----------*/
+@media(max-width: 1000px){
+	.bigBox{
+		margin:0px 20px;
+	}
+@media(orientation: portrait){
+	.illustration{
+		width: 100%;
+		height: 40vh;
+		position: relative;
+		right: 0;
+		top: 40px;
+	}
+	input[name='destination']{
+		width: 100%;
+	}
+	button{
+		font-size: 25px;
+		width: 100%;
+		background-color: #050505;
+		color: white;
+		box-shadow: 5px 15px 10px 1px #a0a1a2;
+		padding: 20px 0 ;
+	}
+}
+
+</style>
+<div class="bigBox">
+	<h2 class="title"><%=day%></h2>
+	<h3 class="subtitle"><%=date%></h3>
+	<h4 class="subtitle"><%=time%></h4>
+	<form action="/confirminout" method="post">
+		<input type="text" name="day" hidden value='<%=day%>'>
+		<input type="text" name="date" hidden value='<%=date%>'>
+		<input type="text" name="time" hidden value='<%=time%>'>
+		<input type="text" name="status" hidden value="goingout">
+		<input type="text" name="destination" required placeholder="Enter destination">
+		<br>
+		<button type="submit">Confirm</button>
+	</form>
+	<div class="illustration"></div>
+</div>
+
+
+<%-include('../tamplate2');-%>

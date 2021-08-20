@@ -1,0 +1,69 @@
+<%-include('../../tamplate');-%>
+<style type="text/css">
+	span{
+		display: none;
+	}
+	#sidebar h2{
+		display: none;
+	}
+	.bigBox{
+		display: grid;
+		grid-template-columns: 30% 70%;
+	}
+	.left{
+		text-align: right;
+	}
+	.right{
+		padding-left: 50px;
+	}
+	.date{
+		font-size: 25px;
+		margin-bottom: 0;
+	}
+	.time{
+		margin:0;
+		color: red;
+	}
+	.day{
+		margin:0;
+	}
+	.status{
+		color: blue;
+		display: inline;
+	}
+	h4{
+		display: inline;
+	}
+	.usn{
+		margin-top: 25px;
+		display: inline-block;
+		margin-bottom: 0px;
+	}
+	.destination{
+		width: 60%;
+		display: inline;
+		overflow-wrap: break-word; 
+	}
+</style>
+<div class="bigBox">
+	<div class="left">
+		<h3 class="date"><%=ele.usn%></h3>
+		<h3 class="time"><%=ele.name%></h3>
+		<h3 class="day"><%=ele.email%></h3>
+	</div>
+	<div class="right">
+		<h4>Phone:</h4>
+		<h3 class="usn"><%=ele.phone%></h3>
+		<br>
+		<h4>Branch:</h4>
+		<h3 class="status"><%=ele.branch%></h3>
+		<br>
+		<h4>Floor:</h4>
+		<h3 class="destination"><%=ele.floor%></h3>
+		<h4>Room:</h4>
+		<h3 class="destination"><%=ele.room%></h3>
+		<h4>Admission:</h4>
+		<h3 class="destination"><%=ele.admission%></h3>
+	</div>
+</div>
+<%-include('../../tamplate2');-%>

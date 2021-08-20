@@ -1,0 +1,89 @@
+<%-include('../tamplate');-%>
+<style type="text/css">
+	.bigBox{
+		margin-left: 350px;
+}
+	.title{
+	font-size: 50px;
+	margin-bottom: 0px;
+	margin-top: 20px;
+}
+	.subtitle{
+	font-size: 30px;
+	margin-top: 0px;
+}
+label{
+	font-size: 25px;
+}
+input[name='usn']{
+	font-size: 25px;
+}
+.verifyBtn{
+	font-size: 25px;
+}
+.mainBtn{
+	width: 200px;
+	margin-top: 40px;
+	font-size: 25px;
+}
+.error{
+		font-size: 25px;
+	}
+/*---------------------------------------------------------------responsive----------*/
+@media(max-width: 1000px){
+	.bigBox{
+		margin:0px 20px;
+	}
+
+}
+@media(orientation: portrait){
+	input[name="usn"]{
+		width: 100%;
+		box-sizing: border-box;
+	}
+	.verifyBtn{
+		margin-top: 10px;
+	}
+	.error{
+		font-size: 25px;
+		text-align: center;
+	}
+	.mainBtn{
+		padding: 20px 0 ;
+		width: 100%;
+		box-shadow: 5px 15px 10px 1px #a0a1a2;
+	}
+	button{
+		width: 100%;
+		background-color: #050505;
+		color: white;
+	}
+	button:disabled {
+		width: 100%;
+	    color: white;
+	    background-color: rgba(0, 0 , 0, 1);
+	    opacity: 0.2;
+	}
+
+}	
+</style>
+<div class="bigBox">
+	<h2 class="title">In Out</h2>
+	<h3 class="subtitle">Register</h3>
+
+	<form action="/verifyinout" method="post">
+			<input type="text" name="usn" placeholder="USN:1JSXXXXXXX" pattern="[0-9]{1}[A-Za-z]{2}[0-9]{2}[A-Za-z]{2}[0-9]{3}" title="Format type e.g: 1JS19IS005 or 1js19is005." required <%=status1%> value=<%=usnvalue%>>	
+		<button class="verifyBtn" type="submit" <%=status1%>>Verify</button>
+	</form>
+
+	<p class="error"><%=error%></p>
+	
+	<form action="/goingout" method="get">
+		<button class="mainBtn" type="submit" <%=status2%>>Going Out</button>
+	</form>
+	<form action="/commingin" method="get">
+		<button class="mainBtn" type="submit" <%=status2%>>Coming In</button>
+	</form>
+
+</div>
+<%-include('../tamplate2');-%>

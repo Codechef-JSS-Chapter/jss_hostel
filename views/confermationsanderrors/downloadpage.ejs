@@ -1,0 +1,117 @@
+<%-include('../tamplate');-%>
+<style type="text/css">
+	html{
+		background-color: #1F88E5;
+	}
+	body{
+		background-color: #1F88E5;
+	}
+	span{
+		display: none;
+	}
+	.bigBox{
+		position: absolute;
+		top: 0;
+		left: 300px;
+		right: 0;
+		bottom: 0;
+	}
+	#illustration{
+		background-image: url(asset/1.jpg);
+		width: 30%;
+		background-size: cover;
+		border-radius: 20px;
+		height: calc(100vh - 200px);
+		position:absolute;
+		right: 50px;
+		top: 150px;
+	}
+	#mainillu{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 5px;
+		right: 5px;
+		background-image: url(asset/<%=picture%>.png);
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+
+	.tickmark{
+		width: 60%;
+		height: 70vh;
+		background-image: url(asset/download.gif);
+		background-size:contain;
+		background-repeat: no-repeat;
+		margin-left: -2%;
+		background-position: center;
+	}
+	.main{
+		width: 57%;
+		text-align: center;
+	}
+	.main h2{
+		margin:0 22%;
+		background-color: #050505;
+		color: white;
+		box-shadow: 5px 15px 10px 1px #a0a1a2;
+		padding: 10px 0 ; 
+		cursor: pointer;
+		transition: all 0.5s;
+	}
+	.main h2:hover{
+		transform: scale(1.1);
+	}
+/*---------------------------------------------------------------responsive--------------*/
+@media(max-width: 1000px){
+	.bigBox{
+		left:20px;
+	}
+}
+@media(orientation: portrait){
+	.bigBox{
+		left:0px;
+	}
+	.tickmark{
+		margin-left: 0;
+		width: 100%;
+		height: 50vh;
+		background-position: center;
+		background-size: 150%;
+		margin-top: 50px;
+	}
+	#illustration{
+		width: 90%;
+		height: 20vh;
+		position:absolute;
+		top: 75vh;
+		left: 0;
+		margin-left: 5%;
+	}
+	.main h2{
+		margin: 0 5%;
+	}
+	.main{
+		width: 100%;
+		position: absolute;
+		top: 47vh;
+		left: 0;
+	}
+}
+</style>
+<div class="bigBox">
+	<div class="boxLeft">
+		<div class="tickmark"></div>
+		<div class="main">
+			<h1><%=message%></h1>
+			<h2 onclick="location.href='https://download1525.mediafire.com/j5yfp717wuxg/4zumrz0rwgmq21w/JssHostel.apk'">Download .apk</h2>
+		</div>
+	</div>
+	<div id="illustration">
+		<div id="mainillu"></div>
+	</div>
+</div>
+
+
+<%-include('../tamplate2');-%>

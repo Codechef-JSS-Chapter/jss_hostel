@@ -1,0 +1,111 @@
+<%-include('../../tamplate');-%>
+<style type="text/css">
+	form{
+		margin-left: 300px;
+	}
+	.title{
+		font-size: 50px;
+		margin: 20px 0;
+	}
+	input{
+		margin-bottom: 20px;
+		font-size: 25px;
+	}
+	input[name="numberofpeople"]{
+		width: 107px;
+	}
+	input[name="expire"]{
+		width: 146px;
+	}
+	label{
+		font-size: 25px;
+	}
+	select{
+		margin-bottom: 20px;
+		font-size: 25px;
+		width:176px;
+	}
+	select[name="filter"]{
+		width: 166px;
+	}
+	textarea{
+		margin-bottom: 20px;
+		font-size: 25px;
+		width: 318px;
+	}
+	button{
+		font-size: 25px;
+	}
+/*---------------------------------------------------------------responsive----------*/
+
+@media(max-width: 1000px){
+	form{
+		margin:0px 20px;
+	}
+}
+@media(orientation: portrait){
+	input{
+		display: block;
+		width: 100%;
+		margin: 0;
+	}
+	input[name="numberofpeople"]{
+		width: 110px;
+		display: inline;
+	}
+	textarea{
+		width: 100%;
+		margin-top: 20px;
+		height: 150px;
+	}
+	input[name="expire"]{
+		display: inline;
+		width: 146px;
+		margin-bottom: 20px;
+	}
+	button{
+		position: sticky;
+		width: 100%;
+		left: 0;
+		bottom: 0;
+		background-color: black;
+		color: white;
+		padding: 20px 0;
+	}
+}	
+</style>
+<form action="/confirmpal" method="POST">
+	<h3 class="title">Pal Required</h3>
+	<input type="text" placeholder="Name" name="name" required>
+	<br>
+	<input type="text" placeholder="Whatsapp Number" required name="phone">
+	<br>
+	<label for="for">Required for:</label>
+	<select name="for">
+			<option>Pizza</option>
+			<option>Netflix</option>
+			<option>Amazon prime</option>
+			<option>Ola/uber</option>
+			<option>Others</option>
+	</select>
+	<br>
+	<label for="numberofpeople">Number of people:</label>
+	<input type="number" name="numberofpeople" required>
+	<br>
+	<textarea name="message" placeholder="Message..." required></textarea>
+	<br>
+	<label for="expire">Expire in(days):</label>
+	<input type="number" name="expire" required>
+	<br>
+	<label for="filter">Send to(floor):</label>
+	<select name="filter">
+			<option>All</option>
+			<option>Ground</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+	</select>
+	<br>
+	<button type="submit">Send</button>
+</form>
+<%-include('../../tamplate2');-%>

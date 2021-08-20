@@ -1,0 +1,89 @@
+<%-include('tamplate');-%>
+<link rel="stylesheet" type="text/css" href="css/register.css">
+<div id="preloader">	
+</div>
+<div class="bigBox">
+
+	<h2 class="title">New User</h2>
+	<h3 class="subtitle">Registration</h3>
+
+	<form action="/verifiedusn" method="post">
+		<label for="usn">USN:</label>
+		<input type="text" name="usn" placeholder="1JSXXXXXXX" pattern="[0-9]{1}[A-Za-z]{2}[0-9]{2}[A-Za-z]{2}[0-9]{3}" title="Format type e.g: 1JS19IS005 or 1js19is005." required <%=status1%> value=<%=usnvalue%>>
+		<button type="submit" <%=status1%>>Verify</button>
+	</form>
+
+	<p class="error"><%=error%></p>
+
+	<form action="/newuser" name="registerform" method="post">
+		<label for="name">Name:</label>
+		<input type="text" name="name" required <%=status2%>>
+		<br>
+		<label for="email">email:</label>
+		<input type="email" name="email" required <%=status2%>>
+		<br>
+		<label for="phone">Mobile:</label>
+		<input type="text" name="phone" pattern="[0-9]{10}" required <%=status2%> >
+		<br>
+		<label for="branch">Branch:</label>
+		<select name="branch" required <%=status2%>>
+			<option>ISE</option>
+			<option>ECE</option>
+			<option>CSE</option>
+			<option>MECH</option>
+			<option>CIV</option>
+			<option>IE</option>
+		</select>
+		<br>
+		<label for="floor">Floor:</label>
+		<select name="floor" required <%=status2%>>
+			<option>Ground</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+		</select>
+		<br>
+		<label for="room">Room No:</label>
+		<input type="text" name="room" placeholder="e.g: 33" required <%=status2%> title="Enter Room No without floor.">
+		<br>
+		<label for="admission">Admission:</label>
+		<select name="admission" required <%=status2%>>
+			<option>COMEDK</option>
+			<option>KCET</option>
+			<option>Others</option>
+		</select>
+		<br>
+		<h3>Important!! We use push notifications to keep you updated with notices and messages by your friends. So click on give permission and press allow when pop up appears.</h3>
+		<input type="checkbox" required onclick="subscribe()" <%=status2%>>Give Permission</input>
+		<input type="text" name="subscription" hidden id="subscription">
+		<br>
+		<br>
+	</form>
+	<button type="submit" class="finalBtn" onclick="submitfunction();" <%=status2%>>Submit</button>
+
+</div>
+<script type="text/javascript">
+	addEventListener('load',async()=>{
+		let sw = await navigator.serviceWorker.register('./serviceworker.js');
+	});
+
+
+	async function subscribe(){
+		let sw = await navigator.serviceWorker.ready;
+		let push = await sw.pushManager.subscribe({
+			userVisibleOnly:true,
+			applicationServerKey:'BBRxbsg386w9GmPHZ8dnLBrZZJYWNuj5bCh5QS33Jdhx7m6_hOfXDgrrqUjE_FK8-7_hFATF5OR-SvMnvhSILKE'
+		})
+		document.querySelector('#subscription').value=JSON.stringify(push);
+		console.log(document.querySelector('#subscription').value);
+		console.log(JSON.stringify(push)); 
+
+	}
+
+	function submitfunction(){
+		preloader=document.querySelector('#preloader');
+		preloader.setAttribute('style','display:block');
+		setTimeout(()=>{document.registerform.submit()},5000);
+	}
+</script>
+<%-include('tamplate2');-%>	

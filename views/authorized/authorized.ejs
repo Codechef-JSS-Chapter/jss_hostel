@@ -1,0 +1,61 @@
+<%-include('../tamplate');-%>
+
+
+<style type="text/css">
+	.fa-search{
+	background: -webkit-linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
+	-webkit-background-clip:text;
+	-webkit-text-fill-color:transparent;
+	}
+	.fa-key{
+	background: -webkit-linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
+	-webkit-background-clip:text;
+	-webkit-text-fill-color:transparent;
+	}
+	span{
+		display: none;
+	}
+	#sidebar h2{
+		display: none;
+	}
+	
+</style>
+
+
+
+	<div id="panelSelect">
+		<div id="panelSelectBtn">
+			<div>	
+			</div>
+			<div>	
+			</div>
+		</div>
+		<div id="basic">
+			<div class="card" id="inout" onclick="location.href='/inoutsearch'">
+				<p>In Out<br>Register</p>
+				<i class="fas fa-door-open"></i>
+			</div>
+			<div class="card" id="complaints" onclick="location.href='/complaintsearch'">
+				<p>Complaint<br>Register</p>
+				<i class="fas fa-tools"></i>
+			</div>
+			<div class="card" id="application" onclick="location.href='/applicationsearch'">
+				<p>View<br>Application</p>
+				<i class="fas fa-envelope-open-text"></i>
+			</div>
+			<div class="card" id="notice" onclick="location.href='/sendnotice'">
+				<p>Send<br>Notice</p>
+				<i class="fas fa-clipboard-list"></i>
+			</div>
+			<div class="card" id="mess" onclick="location.href='/usnsearch'">
+				<p>Usn<br>Lookup</p>
+				<i class="fas fa-search"></i>
+			</div>
+			<div class="card" id="roomstatus">
+				<p>Change<br>Password</p>
+				<i class="fas fa-key"></i>
+			</div>
+		</div>
+	</div>
+
+<%-include('../tamplate2');-%>	
