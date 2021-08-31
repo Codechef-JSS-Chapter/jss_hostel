@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
@@ -21,12 +23,12 @@ app.use(require("body-parser").json())
 
 //mongo connections
 //mongoose.connect('mongodb://localhost:27017/hostelapp');
-mongoose.connect('mongodb+srv://aditya123:aditya123@cluster0.ix0na.mongodb.net/hostelapp?retryWrites=true&w=majority',{ useNewUrlParser: true },{ useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URL,{ useNewUrlParser: true },{ useUnifiedTopology: true });
 
 //keys for notification
 let vapidkeys={
-  publicKey: 'BBRxbsg386w9GmPHZ8dnLBrZZJYWNuj5bCh5QS33Jdhx7m6_hOfXDgrrqUjE_FK8-7_hFATF5OR-SvMnvhSILKE',
-  privateKey: 'dlNvosUUp4_KKHuCW54_CwKAdxEgY-kFcZJ2O6p77ho'
+  publicKey: process.env.VAP_ID_PUBLIC,
+  privateKey: process.env.VAP_ID_PRIVATE
 }
 
 //database schemeas
